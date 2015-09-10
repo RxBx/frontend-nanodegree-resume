@@ -86,6 +86,9 @@ function logClicks(x,y) {
 
 $(document).click(function(loc) {
   // your code goes here!
+  var xVal = loc.pageX;
+  var yVal = loc.pageY;
+  logClicks(xVal, yVal);
 });
 
 
@@ -106,6 +109,7 @@ function initializeMap() {
   var locations;
 
   var mapOptions = {
+    //turns off normal map control overlays - gb
     disableDefaultUI: true
   };
 
@@ -131,7 +135,8 @@ function initializeMap() {
     // iterates through school locations and appends each location to
     // the locations array
     for (var school in education.schools) {
-      locations.push(education.schools[school].location);
+      //reflects actual "city" location in JSON - gb
+      locations.push(education.schools[school].city);
     }
 
     // iterates through work locations and appends each location to
@@ -173,6 +178,7 @@ function initializeMap() {
     // hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
       // your code goes here!
+      infoWindow.open(map, marker);
     });
 
     // this is where the pin actually gets added to the map.
@@ -235,11 +241,25 @@ Uncomment the code below when you're ready to implement a Google Map!
 */
 
 // Calls the initializeMap() function when the page loads
-//window.addEventListener('load', initializeMap);
+window.addEventListener('load', initializeMap);
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
-//window.addEventListener('resize', function(e) {
+window.addEventListener('resize', function(e) {
   //Make sure the map bounds get updated on page resize
-//  map.fitBounds(mapBounds);
-//});
+  map.fitBounds(mapBounds);
+});
+
+google.maps.event.addListener(marker, 'click', function() {
+      // your code goes here!
+      infoWindow.open(map, marker);
+    });
+///my code to add new click item - gb
+/*
+ref: https://developers.google.com/maps/documentation/javascript/examples/event-arguments
+map.addListener('click', function(e) {
+    var marker = new google.maps.Marker({
+    position: e.latLng,
+    map: map
+    })
+  };*/
