@@ -13,7 +13,7 @@ var bio = {
 	"welcomeMessage":"My brother was Jesse - yes, that Jesse",
 	"contacts": {
 		"mobile":"323 555 1212",
-		"email":"frankjames@jessejamesmail.com",
+		"email":"frankjames@thegemsaloon.com",
 		"github":"FrankJamesCodes",
 		"twitter":"@FrankJames",
 		"location": "Tombstone"
