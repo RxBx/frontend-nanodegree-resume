@@ -136,7 +136,7 @@ function initializeMap() {
     // the locations array
     for (var school in education.schools) {
       //reflects actual "city" location in JSON - gb
-      locations.push(education.schools[school].city);
+      locations.push(education.schools[school].location);
     }
 
     // iterates through work locations and appends each location to
@@ -256,7 +256,7 @@ google.maps.event.addListener(marker, 'click', function() {
     });
 ///my code to add new click item - gb
 /*
-ref: https://developers.google.com/maps/documentation/javascript/examples/event-arguments
+//ref: https://developers.google.com/maps/documentation/javascript/examples/event-arguments
 map.addListener('click', function(e) {
     var marker = new google.maps.Marker({
     position: e.latLng,
