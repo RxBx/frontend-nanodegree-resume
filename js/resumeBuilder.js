@@ -7,10 +7,10 @@ $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
 
 
+
 var bio = {
 	"name":"Frank James",
 	"role": "Sidekick",
-	"welcomeMessage":"My brother was Jesse - yes, that Jesse",
 	"contacts": {
 		"mobile":"323 555 1212",
 		"email":"frankjames@thegemsaloon.com",
@@ -18,9 +18,132 @@ var bio = {
 		"twitter":"@FrankJames",
 		"location": "Tombstone"
 		},
-	"picture": "images/frank-james.jpg",
-	"skills": ["hunting","fishing","shooting"]
+	"welcomeMessage":"My brother was Jesse - yes, that Jesse",
+	"skills": ["hunting","fishing","shooting"],
+	"biopic": "images/frank-james.jpg",
+	"display": function() {
+		//$("#topContacts").append(HTMLcontactGeneric);
+		$("#topContacts:last").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
+		$("#topContacts:last").append(HTMLemail.replace("%data%", bio.contacts.email));
+		$("#topContacts:last").append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
+		$("#topContacts:last").append(HTMLgithub.replace("%data%", bio.contacts.github));
+		//$("#topContacts:last").append(HTMLblog.replace("%data%", bio.contacts.mobile));
+		$("#topContacts:last").append(HTMLlocation.replace("%data%", bio.contacts.location));
+
+		$("#topContacts").after(HTMLbioPic.replace("%data%", bio.biopic));
+		$(".biopic").after(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
+
+		if (bio.skills.length > 0) {
+			$("#header").append(HTMLskillsStart);
+			
+			var formattedHTMLskill = HTMLskills.replace("%data%", bio.skills[0]);
+			$("#skills").append(formattedHTMLskill);
+
+			var formattedHTMLskill = HTMLskills.replace("%data%", bio.skills[1]);
+			$("#skills").append(formattedHTMLskill);
+
+			var formattedHTMLskill = HTMLskills.replace("%data%", bio.skills[2]);
+			$("#skills").append(formattedHTMLskill);
+		}
+	}
 }
+
+
+
+
+/*
+var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
+var HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>';
+var HTMLemail = '<li class=" flex-item"><span class="orange-text">email</span><span class="white-text">%data%</span></li>';
+var HTMLtwitter = '<li class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%data%</span></li>';
+var HTMLgithub = '<li class="flex-item"><span class="orange-text">github</span><span class="white-text">%data%</span></li>';
+var HTMLblog = '<li class="flex-item"><span class="orange-text">blog</span><span class="white-text">%data%</span></li>';
+var HTMLlocation = '<li class="flex-item"><span class="orange-text">location</span><span class="white-text">%data%</span></li>';
+
+var HTMLbioPic = '<img src="%data%" class="biopic">';
+var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
+*/
+
+
+
+
+var education = {
+	"schools": [
+		{
+		"name":"College of Hard Knocks",
+		"location":"Topeka",
+		"degree": "Certificate of Attendance",
+		"majors":["Hunting"],
+		"dates": 1870,
+		"url":"http://www.collegeofhardknocks.com"
+			},
+		{
+		"name":"School of Gun Sports",
+		"location":"Witchita",
+		"degree": "Certificate of Appreciation",
+		"majors":["Shooting"],
+		"dates": 1864,
+		"url":"http://www.schoolofgunsports.org"
+			}
+		],
+	"onlineCourses":[
+		{
+			"title": "Beginner Lockpicking",
+			"school": "PreInternet Academy",
+			"date": 1880,
+			"url": "http://www.preinternetacademy.com"
+			},
+		{
+			"title": "Advanced Bailment",
+			"school": "19th Century Online Police Academy",
+			"date": 1881,
+			"url": "http://www.19opd.com"
+			}
+		],
+		"display": function () {
+			for (index in education.schools) {
+				$("#education").append(HTMLschoolStart);
+				
+				var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[index].name);
+				var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[index].degree);
+				var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[index].location)
+				var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[index].dates);
+				var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[index].majors[0]);
+
+				var formattedSchoolItem = formattedSchoolName + formattedSchoolDegree + formattedSchoolLocation + formattedSchoolDates + formattedSchoolMajor;
+
+				$(".education-entry:last").append(formattedSchoolItem);
+				}
+			$("#education").append(HTMLonlineClasses);
+			
+			for (index in education.schools) {
+				$("#education").append(HTMLschoolStart);
+				
+				var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[index].title);
+				var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[index].school);
+				var formattedOnlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[index].date)
+				var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlineCourses[index].url);
+				
+				var formattedOnlineCourseItem = formattedOnlineTitle + formattedOnlineSchool + formattedOnlineDates + formattedOnlineURL;
+
+				$(".education-entry:last").append(formattedOnlineCourseItem);
+			}
+		}
+	}
+/*
+//var HTMLschoolStart = '<div class="education-entry"></div>';
+var HTMLschoolName = '<a href="#">%data%';
+var HTMLschoolDegree = ' -- %data%</a>';
+var HTMLschoolDates = '<div class="date-text">%data%</div>';
+var HTMLschoolLocation = '<div class="location-text">%data%</div>';
+var HTMLschoolMajor = '<em><br>Major: %data%</em>';
+
+var HTMLonlineClasses = '<h3>Online Classes</h3>';
+var HTMLonlineTitle = '<a href="#">%data%';
+var HTMLonlineSchool = ' - %data%</a>';
+var HTMLonlineDates = '<div class="date-text">%data%</div>';
+var HTMLonlineURL = '<br><a href="#">%data%</a>';
+*/
 
 
 var work = {
@@ -39,8 +162,22 @@ var work = {
 			"dates":"1875 - Present",
 			"description":"Managed fast-paced spitting concession."
 		}
-		]
+		],
+	"display": function() {
+		for (index in work.jobs) {
+			$("#workExperience").append(HTMLworkStart);
 
+
+			var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[index].employer);
+			var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[index].title);
+			var formattedWorkDate = HTMLworkDates.replace("%data%", work.jobs[index].dates);
+			var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[index].location);
+			var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[index].description);
+
+			var formattedEmployerTitle = formattedEmployer + formattedTitle + formattedWorkDate + formattedWorkLocation + formattedWorkDescription;
+			$(".work-entry:last").append(formattedEmployerTitle);
+			}
+		}
 }
 
 
@@ -58,74 +195,38 @@ var projects = {
 			"description": "After pointing out the streets were filthy, I was volunteered for cleaning the streets of Deadwood for the first time ever, all by myself, for the next several years. Highly successful!",
 			"images": ["images/deadwood_gem_street_1.jpg", "images/deadwood_gem_street_2.jpg", "images/deadwood_gem_street_3.jpg"]
 			}
-		]
-}
-
-
-var education = {
-	"schools": [
-		{
-		"name":"College of Hard Knocks",
-		"city":"Topeka",
-		"majors":["Shooting","fishing"],
-		"dates":"1866-1870",
-		"courseLinks":"http://www.collegeofhardknocks.com"
-			},
-		{
-		"name":"School of Gun Sports",
-		"city":"Witchita",
-		"majors":["Aiming"],
-		"dates":"1860-1864",
-		"courseLinks":"http://www.schoolofgunsports.org"
-			}
 		],
-	"onlineCourses":[
-		{
-			"title": "Beginner Lockpicking",
-			"school": "PreInternet Academy",
-			"dates": 1880,
-			"url": "http://www.preinternetacademy.com"
-			},
-		{
-			"title": "Advanced Bailment",
-			"school": "19th Century Online Police Academy",
-			"dates": 1881,
-			"url": "http://www.19opd.com"
+		"display": function() {
+			for (index in projects.projects) {
+				$("#projects").append(HTMLprojectStart);
+			var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[index].title);
+			var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[index].dates);
+			var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[index].description);
+			
+			var formattedProjectImages = "";
+			if (projects.projects[index].images.length > 0){
+				for (image in projects.projects[index].images) {
+					var formattedNextProjectImage = HTMLprojectImage.replace("%data%", projects.projects[index].images[image]);
+					formattedProjectImages = formattedProjectImages + formattedNextProjectImage;
+					}
+				};
+			var formattedProjectItems = formattedProjectTitle + formattedProjectDates + formattedProjectDescription + formattedProjectImages;
+			$(".project-entry:last").append(formattedProjectItems);
+				}
 			}
-		]
 }
 
-if (bio.skills.length > 0) {
-	$("#header").append(HTMLskillsStart);
-	
-	var formattedHTMLskill = HTMLskills.replace("%data%", bio.skills[0]);
-	$("#skills").append(formattedHTMLskill);
 
-	var formattedHTMLskill = HTMLskills.replace("%data%", bio.skills[1]);
-	$("#skills").append(formattedHTMLskill);
+bio.display();
 
-	var formattedHTMLskill = HTMLskills.replace("%data%", bio.skills[2]);
-	$("#skills").append(formattedHTMLskill);
+education.display();
 
-};
+work.display();
 
-var displayWork = function() {
-	for (index in work.jobs) {
-		$("#workExperience").append(HTMLworkStart);
+projects.display();
 
+$("#mapDiv").append(googleMap);
 
-		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[index].employer);
-		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[index].title);
-		var formattedWorkDate = HTMLworkDates.replace("%data%", work.jobs[index].dates);
-		var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[index].location);
-		var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[index].description);
-
-		var formattedEmployerTitle = formattedEmployer + formattedTitle + formattedWorkDate + formattedWorkLocation + formattedWorkDescription;
-		$(".work-entry:last").append(formattedEmployerTitle);
-	}
-};
-
-displayWork();
 
 /*
 var inName = function() {
@@ -143,31 +244,6 @@ var inName = function() {
 }
 
 $("#main").append(internationalizeButton); */
-
-projects.display = function() {
-	for (index in projects.projects) {
-		$("#projects").append(HTMLprojectStart);
-	var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[index].title);
-	var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[index].dates);
-	var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[index].description);
-	
-	var formattedProjectImages = "";
-	if (projects.projects[index].images.length > 0){
-		
-		for (image in projects.projects[index].images) {
-			var formattedNextProjectImage = HTMLprojectImage.replace("%data%", projects.projects[index].images[image]);
-			formattedProjectImages = formattedProjectImages + formattedNextProjectImage;
-		}
-	};
-
-	var formattedProjectItems = formattedProjectTitle + formattedProjectDates + formattedProjectDescription + formattedProjectImages;
-	$(".project-entry:last").append(formattedProjectItems);
-}
-};
-
-projects.display();
-
-$("#mapDiv").append(googleMap);
 
 
 
