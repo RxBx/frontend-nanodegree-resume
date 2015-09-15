@@ -1,10 +1,10 @@
-var name = "Frank James";
+/*var name = "Frank James";
 var formattedName = HTMLheaderName.replace("%data%", name);
 var role = "Sidekick";
 var formattedRole = HTMLheaderRole.replace("%data%", role);
 
 $("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
+$("#header").prepend(formattedName);*/
 
 
 
@@ -23,6 +23,11 @@ var bio = {
 	"biopic": "images/frank-james.jpg",
 	"display": function() {
 		//$("#topContacts").append(HTMLcontactGeneric);
+		var formattedName = HTMLheaderName.replace("%data%", bio.name);
+		var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+		$("#header").prepend(formattedRole);
+		$("#header").prepend(formattedName);
+
 		$("#topContacts:last").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
 		$("#topContacts:last").append(HTMLemail.replace("%data%", bio.contacts.email));
 		$("#topContacts:last").append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
@@ -36,14 +41,16 @@ var bio = {
 		if (bio.skills.length > 0) {
 			$("#header").append(HTMLskillsStart);
 			
-			var formattedHTMLskill = HTMLskills.replace("%data%", bio.skills[0]);
-			$("#skills").append(formattedHTMLskill);
+				for (index in bio.skills) {
+				var formattedHTMLskill = HTMLskills.replace("%data%", bio.skills[index]);
+				$("#skills").append(formattedHTMLskill);
+			}
+/*
+				var formattedHTMLskill = HTMLskills.replace("%data%", bio.skills[1]);
+				$("#skills").append(formattedHTMLskill);
 
-			var formattedHTMLskill = HTMLskills.replace("%data%", bio.skills[1]);
-			$("#skills").append(formattedHTMLskill);
-
-			var formattedHTMLskill = HTMLskills.replace("%data%", bio.skills[2]);
-			$("#skills").append(formattedHTMLskill);
+				var formattedHTMLskill = HTMLskills.replace("%data%", bio.skills[2]);
+				$("#skills").append(formattedHTMLskill);*/
 		}
 	}
 }
@@ -73,7 +80,7 @@ var education = {
 		"name":"College of Hard Knocks",
 		"location":"Topeka",
 		"degree": "Certificate of Attendance",
-		"majors":["Hunting"],
+		"majors":["Hunting" , "Fishing"],
 		"dates": 1870,
 		"url":"http://www.collegeofhardknocks.com"
 			},
@@ -108,7 +115,17 @@ var education = {
 				var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[index].degree);
 				var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[index].location)
 				var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[index].dates);
-				var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[index].majors[0]);
+				var schoolList = "";
+				for (item in education.schools[index].majors) {
+					schoolList = schoolList + " " + education.schools[index].majors[item];
+					if (item < (education.schools[index].majors.length -1 )) {
+						schoolList = schoolList + ",";
+						}
+				var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", schoolList.trim());
+				if (education.schools[index].majors.length > 1 ) {
+					formattedSchoolMajor = formattedSchoolMajor.replace("Major", "Majors");
+					}
+				}
 
 				var formattedSchoolItem = formattedSchoolName + formattedSchoolDegree + formattedSchoolLocation + formattedSchoolDates + formattedSchoolMajor;
 
