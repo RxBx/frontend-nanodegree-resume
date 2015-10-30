@@ -65,7 +65,7 @@ The International Name challenge in Lesson 2 where you'll create a function that
 $(document).ready(function() {
   $('button').click(function() {
     var iName = inName() || function(){};
-    $('#name').html(iName);  
+    $('#name').html(iName);
   });
 });
 
@@ -113,9 +113,9 @@ function initializeMap() {
     disableDefaultUI: true
   };
 
-  /* 
+  /*
   For the map to be displayed, the googleMap var must be
-  appended to #mapDiv in resumeBuilder.js. 
+  appended to #mapDiv in resumeBuilder.js.
   */
   map = new google.maps.Map(document.querySelector('#map'), mapOptions);
 
@@ -250,16 +250,20 @@ window.addEventListener('resize', function(e) {
   map.fitBounds(mapBounds);
 });
 
+/*
+///my code to add new click item - incomplete -  gb
+
 google.maps.event.addListener(marker, 'click', function() {
       // your code goes here!
       infoWindow.open(map, marker);
     });
-///my code to add new click item - gb
-/*
+
+
 //ref: https://developers.google.com/maps/documentation/javascript/examples/event-arguments
 map.addListener('click', function(e) {
     var marker = new google.maps.Marker({
     position: e.latLng,
     map: map
     })
-  };*/
+  };
+  */

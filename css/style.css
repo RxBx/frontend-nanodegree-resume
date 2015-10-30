@@ -2,7 +2,12 @@ body,
 div,
 ul,
 li,
-p,
+p {
+  padding:0;
+  margin:0;
+  font-family: "Inconsolata", sans-serif;
+}
+
 h1,
 h2,
 h3,
@@ -11,7 +16,7 @@ h5,
 h6 {
   padding:0;
   margin:0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .clear-fix {
@@ -130,6 +135,7 @@ a {
 /* TODO: Replace with image later */
 #header {
   background-color: #484848;
+  color: #fff;
 }
 
 .flex-box {
