@@ -1,8 +1,9 @@
+/* added icon font set for character set social symbols */
 @import url(http://weloveiconfonts.com/api/?family=zocial);
 
 /* zocial */
 [class*="zocial-"]:before {
-  font-family: 'zocial', sans-serif;
+    font-family: "zocial", sans-serif;
 }
 
 body,
@@ -10,10 +11,9 @@ div,
 ul,
 li,
 p {
-  padding:0;
-  margin:0;
-  font-family: "Inconsolata", sans-serif;
-
+    padding: 0;
+    margin: 0;
+    font-family: "Inconsolata", sans-serif;
 }
 
 h1,
@@ -22,242 +22,244 @@ h3,
 h4,
 h5,
 h6 {
-  padding:0;
-  margin:0;
-  font-family: "Lato", sans-serif;
+    padding: 0;
+    margin: 0;
+    font-family: "Lato", sans-serif;
 }
 
+/* Gave body background gray to provide muted color bgd when #main div hits max-width at 900px */
 body {
-background-color: #bfbfbf;
+    background-color: #bfbfbf;
 }
 
 .clear-fix {
-  overflow: auto;
+    overflow: auto;
 }
 
 .education-entry,
 .work-entry,
 .project-entry {
-  padding: 0 5%;
+    padding: 0 5%;
 }
 
+/* tweaked colors in many cases below for custom styling, and made pad & margin adjustments */
 h1 {
-  font-size: 40px;
-  color: #484848;
-  line-height: 48px;
-  display: inline;
+    font-size: 40px;
+    color: #484848;
+    line-height: 48px;
+    display: inline;
 }
 
 h2 {
-  font-weight: bold;
-  font-size: 24px;
-  color: #484848;
-  line-height: 29px;
-  padding: 10px;
+    font-weight: bold;
+    font-size: 24px;
+    color: #484848;
+    line-height: 29px;
+    padding: 10px;
 }
 
 h3 {
-  font-style: italic;
-  font-size: 20px;
-  color: #000;
-  line-height: 22px;
-  padding:15px 5% 0;
+    font-style: italic;
+    font-size: 20px;
+    color: #000;
+    line-height: 22px;
+    padding: 15px 5% 0;
 }
 
 h4 {
-  font-weight: bold;
-  font-size: 14px;
-  color: #4a4a4a;
-  line-height: 17px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #4a4a4a;
+    line-height: 17px;
 }
 
 h2,
 h4,
 h5 {
-  padding:10px 5%;
-}
-
-
-.date-text {
-  font-style: italic;
-  font-size: 14px;
-  color: #484848;
-  line-height: 16px;
-  float: left;
-}
-
-.location-text {
-  font-style: italic;
-  font-size: 14px;
-  color: #484848;
-  line-height: 16px;
-  float: right;
-
+    padding: 10px 5%;
 }
 
 p {
-  font-size: 14px;
-  color: #333;
-  line-height: 21px;
+    font-size: 14px;
+    color: #333;
+    line-height: 21px;
 }
 
 a {
-  color: #1199c3;
-  text-decoration: none;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  display: block;
-  background-color: inherit;
+    color: #1199c3;
+    text-decoration: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: block;
+    background-color: inherit;
 }
 
+/* added a hover color for links, including footer social symbol links */
 a:hover {
-  color: #7bcee8;
+    color: #7bcee8;
+}
+
+.date-text {
+    font-style: italic;
+    font-size: 14px;
+    color: #484848;
+    line-height: 16px;
+    float: left;
+}
+
+.location-text {
+    font-style: italic;
+    font-size: 14px;
+    color: #484848;
+    line-height: 16px;
+    float: right;
 }
 
 .welcome-message {
-  font-style: italic;
-  font-size: 18px;
-  color: #635037;
-  line-height: 28px;
+    font-style: italic;
+    font-size: 18px;
+    color: #635037;
+    line-height: 28px;
 }
 
 #skills-h3 {
-  color: #484848;
-  /*display: none;*/
+    color: #484848;
 }
 
 .footer {
-  background-color: #049acc;
+    background-color: #049acc;
 }
 
 .header-text {
-  color: #484848;
+    color: #484848;
 }
 
 .white-text {
-  font-weight: bold;
-  color: #fff;
+    font-weight: bold;
+    color: #fff;
 }
 
+/* new class for custom styling */
 .orange-tinge {
-  background-color: #e3c0a1;
-  /*padding-bottom: 10px;*/
-  clear:both;
+    background-color: #e3c0a1;
+    clear: both;
 }
 
-div.orange-tinge>h2:hover {
-  background-color: #e6ac7a;
+/* hover color change to indicate "clickable" region for toggling data - the toggle is thru custom JS */
+.orange-tinge>h2:hover {
+    background-color: #e6ac7a;
 }
 
+/* new class for custom styling */
 .amber {
-  background-color: #f0e6a8;
+    background-color: #f0e6a8;
 }
 
-div.amber>h2:hover {
-  background-color: #f0e184;
+/* hover color change to indicate "clickable" region for toggling data - the toggle is thru custom JS */
+.amber>h2:hover {
+    background-color: #f0e184;
 }
 
 .dark-gray {
-  background-color: #4a4a4a;
+    background-color: #4a4a4a;
 }
 
-/* TODO: Replace with image later */
 #header {
-  background-color: #049acc;
-  color: #fff;
+    background-color: #049acc;
+    color: #fff;
 }
 
 .flex-box {
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 10px;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
 }
 
-div.flex-box>img {
-  width: 200px;
+/* set width for images */
+.flex-box>img {
+    width: 200px;
+    height: 150px;
 }
 
 .center-content {
-  padding: 2.5% 5%;
+    padding: 2.5% 5%;
 }
 
 ul {
-  list-style-type: none;
+    list-style-type: none;
 }
 
+/* created circular photo w border-radius; also, kept photo visible throughout screen sizes */
 .biopic {
-  float: left;
-  padding: 10px;
-  width: 15%;
-  /*display: none;*/
-  border-radius:105px;
+    float: left;
+    padding: 10px;
+    width: 15%;
+    border-radius: 105px;
 }
 
 img {
-  padding: 10px;
+    padding: 10px;
 }
 
 span {
-  padding: 5px;
+    padding: 5px;
 }
 
 #lets-connect {
-  text-align: center;
+    text-align: center;
 }
 
-/* Media queries to handle various device widths */
-
-@media only screen and (max-width: 1024px) {
-/*  #lets-connect {
-    margin-top: 5%;
-  }*/
+/* Media queries to handle styling on various device widths */
+/* limited content to 900px */
+@media screen and (min-width:900px) {
+    #main {
+        width: 900px;
+        margin: 0 auto;
+    }
 }
 
-@media only screen and (min-width:900px) {
-  /*.biopic {
-    width: 175px;
-  }*/
-#main {
-    width: 900px;
-  margin: 0 auto;
+@media screen and (min-width: 750px) {
+    #skills-h3,
+    .biopic {
+        display: block;
+    }
 }
 
+@media screen and (max-width: 512px) {
+    .flex-box>img {
+        width: 150px;
+        height: 113px;
+    }
 }
 
-@media only screen and (max-width: 750px) {
-/*  #lets-connect {
-    margin-top: 10%;
-  }
-  .biopic {
-    width: 150px;
-  }
-  .welcome-message {
-    display: none;
-  }*/
+@media screen and (max-width: 400px) {
+    .flex-box>img {
+        width: 200px;
+        height: 150px;
+    }
 }
 
+@media screen and (max-width: 360px) {
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
+
+/* minor style changes to map */
 #map {
-  display: block;
-  height: 351px;
-  margin: 0 5%;
+    display: block;
+    height: 351px;
+    margin: 0 5%;
 }
 
 #mapDiv {
-  height: 400px;
-  width: 100%;
-  /*padding-bottom: 5%;*/
-}
-
-@media only screen and (min-width: 750px) {
-  #skills-h3,
-  .biopic {
-    display: block;
-  }
-}
-/*
-#hide {
-  display: none;
+    height: 400px;
+    width: 100%;
 }

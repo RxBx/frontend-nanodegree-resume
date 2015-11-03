@@ -28,7 +28,7 @@ var bio = {
         //Checks for skills; then appends if present
         if (bio.skills.length > 0) {
             $("#header").append(HTMLskillsStart);
-            for (var index in bio.skills) {
+            for (var index = 0; index < bio.skills.length; index++) {
                 var formattedHTMLskill = HTMLskills.replace("%data%", bio.skills[index]);
                 $("#skills").append(formattedHTMLskill);
             }
@@ -64,7 +64,6 @@ var education = {
         "url": "http://www.19opd.com"
     }],
     "display": function() {
-        //var indexSchool = education.schools.length
         for (i = 0; i < education.schools.length; i++) {
             $("#education").append(HTMLschoolStart);
 
@@ -72,7 +71,8 @@ var education = {
             var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[i].degree);
             var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].location);
             var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[i].dates);
-            //Majors: Gather list of majors, test for multiple majors to format and pluralize 'Major' intro if necessary
+            /* Singular vs. Plural "Majors": Below gathers list of major(s), tests for multiple majors to format,
+            and pluralizes 'Major' header word if necessary */
             var schoolList = "";
             //Creates Major string, adding comma seperator and spacing where needed
             for (j = 0; j < education.schools[i].majors.length; j++) {
@@ -82,7 +82,7 @@ var education = {
                     schoolList = schoolList + ",";
                 }
                 var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", schoolList.trim());
-                //Pluralize Major header if necessary
+                //Pluralize "Major" header if necessary
                 if (education.schools[i].majors.length > 1) {
                     formattedSchoolMajor = formattedSchoolMajor.replace("Major", "Majors");
                 }
@@ -107,13 +107,8 @@ var education = {
             $(".education-entry:last").append(formattedOnlineCourseItem);
         }
     },
+    //This method hides or reveals education details when called
     "flipView": function() {
-        /*       if ($("#education :last-child").attr('id') !== "hide") {
-                 $("#education :first-child").nextAll().attr('id', 'hide');
-              } else {
-                  $("#education :first-child").nextAll().removeAttr('id');
-
-              }*/
         var hideGroup = $(".hideable-education")
         hideGroup.slideToggle();
     }
@@ -148,13 +143,8 @@ var work = {
             $(".work-entry:last").append(formattedEmployerTitle);
         }
     },
+    //This method hides or reveals work details when called
     "flipView": function() {
-        /*       if ($("#education :last-child").attr('id') !== "hide") {
-                 $("#education :first-child").nextAll().attr('id', 'hide');
-              } else {
-                  $("#education :first-child").nextAll().removeAttr('id');
-
-              }*/
         var hideGroup = $(".hideable-workExperience")
         hideGroup.slideToggle();
     }
@@ -164,12 +154,15 @@ var projects = {
     "projects": [{
         "title": "Cleaning the Rooms",
         "dates": "1875-1880",
-        "description": "A major initiative where I began the first effort to actually clean the rooms of the Gem. Previously, we just never cleaned them.",
+        "description": "A major initiative where I began the first effort to actually clean the rooms" +
+            "of the Gem. Previously, we just never cleaned them.",
         "images": ["images/deadwood-hotel-small_x1.jpg", "images/deadwood_gem_2-small_x1.jpg", "images/deadwood_gem_3-small_x1.jpg"]
     }, {
         "title": "Street Cleaning",
         "dates": "1877-1890",
-        "description": "After pointing out the streets were filthy, I was volunteered for cleaning the streets of Deadwood for the first time ever, all by myself, for the next several years. Highly successful!",
+        "description": "After pointing out the streets were filthy, I was volunteered for cleaning" +
+            "the streets of Deadwood for the first time ever, all by myself, for the next several years." +
+            "Highly successful!",
         "images": ["images/deadwood_gem_street_1-small_x1.jpg", "images/deadwood_gem_street_2-small_x1.jpg", "images/deadwood_gem_street_3-small_x1.jpg"]
     }],
     "display": function() {
@@ -193,29 +186,27 @@ var projects = {
             $(".project-entry:last").append(formattedProjectItems);
         }
     },
+    //This method hides or reveals project details when called
     "flipView": function() {
-        /*       if ($("#education :last-child").attr('id') !== "hide") {
-                 $("#education :first-child").nextAll().attr('id', 'hide');
-              } else {
-                  $("#education :first-child").nextAll().removeAttr('id');
-
-              }*/
         var hideGroup = $(".hideable-projects")
         hideGroup.slideToggle();
     }
-
 };
 
+// This creates a footer for social contacts
 var footer = {
     "contacts": {
         "email": "mailto:frankjames@thegemsaloon.com",
         "github": "http://www.github.com/FrankJamesCodes",
         "twitter": "http://www.twitter.com/FrankJames"
     },
+    //This display uses slightly different JS loop than other sections by iterating thru {object} and not [array]
     "display": function() {
+        //note Object.keys xx .length method to measure object items
         if (Object.keys(footer.contacts).length > 0) {
             var formattedFooterContact = "";
             for (i = 0; i < Object.keys(footer.contacts).length; i++) {
+                //note use of getOwnPropertyNames to use key names as string items for replacement in template HTML
                 var contactItem = HTMLfooterContact.replace("%data1%", footer.contacts[Object.getOwnPropertyNames(footer.contacts)[i]]);
                 contactItem = contactItem.replace("%data2%", Object.getOwnPropertyNames(footer.contacts)[i]);
                 $("#footerContacts").append(contactItem);
@@ -236,8 +227,9 @@ projects.display();
 
 footer.display();
 
+//tags all but first H2 header as "hideable-workExperience", to enable slideToggle hiding of info
 $("#workExperience :first-child").nextAll().addClass('hideable-workExperience');
-
+//creates click -> slideToggle on section H2 header to hide/reveal details
 $("#workExperience :first-child").on('click', function() {
     work.flipView();
 });
@@ -256,8 +248,7 @@ $("#education :first-child").on('click', function() {
 
 $("#mapDiv").append(googleMap);
 
-//("#mapDiv :first-child").nextAll().addClass('hideable-map');
-
+//slightly different slide-toggle mechanism for map due to source HTML's different ID structure
 $("#mapDiv :first-child").on('click', function() {
     if ($('#map').css('display') !== "none") {
         $("#mapDiv").animate({
@@ -272,7 +263,7 @@ $("#mapDiv :first-child").on('click', function() {
     }
 });
 
-
+//creating uppercase last name "internationalize" code
 var inName = function() {
     nameArray = bio.name.trim().split(" ");
 
